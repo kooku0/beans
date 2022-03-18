@@ -142,7 +142,7 @@ module.exports = {
         vars: 'all', varsIgnorePattern: '^_', args: 'after-used', argsIgnorePattern: '^_',
       },
     ],
-    'react/jsx-props-no-spreading': ['error', { exceptions: ['input', 'TradingLineChart', 'select', 'InputField'] }],
+    'react/jsx-props-no-spreading': ['error'],
     'jsx-a11y/anchor-is-valid': ['error', {
       aspects: ['invalidHref'],
     }],
@@ -160,6 +160,7 @@ module.exports = {
     'react/require-default-props': [2, {
       ignoreFunctionalComponents: true,
     }],
+    'import/no-extraneous-dependencies': 'off',
     camelcase: ['error', { allow: ['snapshot_UNSTABLE'], properties: 'never' }],
     'no-underscore-dangle': ['error', { allow: ['_r', '_active'] }],
   },
