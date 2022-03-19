@@ -8,4 +8,5 @@ export default NextAuth({
       clientSecret: process.env.KAKAO_CLIENT_SECRET as string,
     }),
   ],
+  secret: process.env.SECRET,
 });

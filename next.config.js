@@ -3,7 +3,6 @@
  */
 const nextConfig = {
   reactStrictMode: true,
-  pageExtensions: ['page.tsx', 'page.jsx', 'api.ts'],
   eslint: {
     ignoreDuringBuilds: true,
   },
