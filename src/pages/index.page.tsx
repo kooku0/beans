@@ -1,9 +1,13 @@
 import styled from '@emotion/styled';
+import Link from 'next/link';
 
 function HomePage() {
   return (
     <Main>
-      hello
+      <div>home</div>
+      <Link href="/auth">
+        <a>auth</a>
+      </Link>
     </Main>
   );
 }
