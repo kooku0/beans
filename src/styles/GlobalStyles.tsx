@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import { ReactElement } from 'react';
 
 import {
   css, Global, Theme, useTheme,
@@ -47,6 +47,13 @@ const setGlobalStyles = (theme: Theme) => css`
   /* Firefox */
   input[type=number] {
     -moz-appearance: textfield;
+  }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+      transition: background-color 5000s ease-in-out 0s;
   }
 
   h1 {

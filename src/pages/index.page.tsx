@@ -5,9 +5,16 @@ function HomePage() {
   return (
     <Main>
       <div>home</div>
-      <Link href="/auth">
-        <a>auth</a>
-      </Link>
+      <div>
+        <Link href="/auth">
+          <a>auth</a>
+        </Link>
+      </div>
+      <div>
+        <Link href="/post">
+          <a>post</a>
+        </Link>
+      </div>
     </Main>
   );
 }

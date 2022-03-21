@@ -2070,6 +2070,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@hookform/resolvers@npm:^2.8.8":
+  version: 2.8.8
+  resolution: "@hookform/resolvers@npm:2.8.8"
+  peerDependencies:
+    react-hook-form: ^7.0.0
+  checksum: 3de8b00ba3d085cd29b8d9d41bb17f5e31a483e46dafef98a37d898fbf5f3d19a74729e1cda8d15d7513486b5886ea12fbef0c1aa4ed009e3cf3c804cbe325a2
+  languageName: node
+  linkType: hard
+
 "@humanwhocodes/config-array@npm:^0.5.0":
   version: 0.5.0
   resolution: "@humanwhocodes/config-array@npm:0.5.0"
@@ -3937,6 +3946,7 @@ __metadata:
     "@emotion/react": ^11.7.1
     "@emotion/styled": ^11.6.0
     "@emotion/utils": ^1.0.0
+    "@hookform/resolvers": ^2.8.8
     "@svgr/webpack": ^6.1.2
     "@testing-library/dom": ^8.7.2
     "@testing-library/jest-dom": ^5.14.1
@@ -3983,14 +3993,14 @@ __metadata:
     qs: ^6.10.2
     react: ^17.0.2
     react-dom: ^17.0.2
-    react-hook-form: 7.20.4
+    react-hook-form: ^7.28.1
     react-query: ^3.34.6
     react-use: ^17.3.2
     react-use-measure: ^2.1.1
     recoil: ^0.6.1
     start-server-and-test: ^1.14.0
     typescript: 4.4.3
-    yup: ^0.32.9
+    yup: ^0.32.11
   languageName: unknown
   linkType: soft
 
@@ -9885,12 +9895,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-hook-form@npm:7.20.4":
-  version: 7.20.4
-  resolution: "react-hook-form@npm:7.20.4"
+"react-hook-form@npm:^7.28.1":
+  version: 7.28.1
+  resolution: "react-hook-form@npm:7.28.1"
   peerDependencies:
     react: ^16.8.0 || ^17
-  checksum: e2b77eb89d7c6253d5a27a219ffb4d46b2d31466ab73baab4bc937cd3f1f7863ec0b6eac31d59e3b817450c21f8636f7754a7b9e3604a7c1fa27b5d15a6cca30
+  checksum: 176e653f3c5c1882125b6d51d3b2258c7120202227b91edbf74708eb3f0d455b3c827f1b6c236cdf208de82871b14e86d9aeacbd44c418bcf591b2346721156f
   languageName: node
   linkType: hard
 
@@ -12006,7 +12016,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"yup@npm:^0.32.9":
+"yup@npm:^0.32.11":
   version: 0.32.11
   resolution: "yup@npm:0.32.11"
   dependencies:
