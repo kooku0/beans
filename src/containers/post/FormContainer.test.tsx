@@ -3,18 +3,31 @@ import {
 } from '@testing-library/react';
 import { act } from '@testing-library/react-hooks';
 
+import useCreateJournal from '@/hooks/api/useCreateJournal';
+import ReactQueryWrapper from '@/test/ReactQueryWrapper';
+
 import FormContainer from './FormContainer';
 
+jest.mock('@/hooks/api/useCreateJournal');
+
 describe('FormContainer', () => {
+  const handleCreateJournal = jest.fn();
+
   beforeEach(() => {
     jest.clearAllMocks();
+
+    (useCreateJournal as jest.Mock).mockImplementation(() => ({
+      isSuccess: given.isSuccess,
+      mutate: handleCreateJournal,
+      error: given.error,
+    }));
   });
 
   const renderFormContainer = () => render((
-    <FormContainer />
+    <ReactQueryWrapper>
+      <FormContainer />
+    </ReactQueryWrapper>
   ));
-
-  const consoleLog = jest.spyOn(console, 'log');
 
   context('form을 제대로 입력하면', () => {
     context('저장하기 버튼을 누르면', () => {
@@ -38,8 +51,8 @@ describe('FormContainer', () => {
           fireEvent.submit(screen.getByText('저장하기'));
         });
 
-        expect(consoleLog).toBeCalledWith({
-          date: '2012-04-12',
+        expect(handleCreateJournal).toBeCalledWith({
+          date: new Date('2012-04-12'),
           price: 123,
           location: 'location',
           contents: 'contents',
@@ -69,7 +82,7 @@ describe('FormContainer', () => {
         fireEvent.submit(screen.getByText('저장하기'));
       });
 
-      expect(consoleLog).not.toBeCalled();
+      expect(handleCreateJournal).not.toBeCalled();
     });
   });
 });

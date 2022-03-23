@@ -1,10 +1,14 @@
 import { render } from '@testing-library/react';
 
+import ReactQueryWrapper from '@/test/ReactQueryWrapper';
+
 import PostPage from './post.page';
 
 describe('PostPage', () => {
   const renderPostPage = () => render((
-    <PostPage />
+    <ReactQueryWrapper>
+      <PostPage />
+    </ReactQueryWrapper>
   ));
 
   it('"글쓰기" 문구가 보여야 한다.', () => {
