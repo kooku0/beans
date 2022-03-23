@@ -6,28 +6,25 @@ import * as yup from 'yup';
 
 import Button from '@/components/common/Button';
 import Input from '@/components/common/Input';
-
-interface FormData {
-  date: string;
-  price: string;
-  location: string;
-  contents: string;
-}
+import useCreateJournal from '@/hooks/api/useCreateJournal';
+import { Journal } from '@/models/journal';
 
 const validationSchema = yup.object({
-  date: yup.string().required('날짜를 입력해주세요.'),
+  date: yup.date().max(new Date(), '오늘 날짜 이전이어야 합니다.').required('날짜를 입력해주세요.'),
   price: yup.number().required('사용한 비용을 입력해주세요.'),
   location: yup.string().trim().required('위치를 입력해주세요.'),
   contents: yup.string().trim().required('내용을 입력해주세요.'),
 }).required();
 
 function FormContainer() {
-  const { register, handleSubmit, formState: { isValid } } = useForm<FormData>({
+  const { mutate } = useCreateJournal();
+
+  const { register, handleSubmit, formState: { errors, isValid } } = useForm<Journal>({
     mode: 'onChange',
     resolver: yupResolver(validationSchema),
   });
 
-  const onSubmit = handleSubmit((data) => console.log(data));
+  const onSubmit = handleSubmit((data) => mutate(data));
 
   return (
     <Form onSubmit={onSubmit}>
@@ -35,16 +32,19 @@ function FormContainer() {
         type="date"
         register={register('date')}
         placeholder="날짜"
+        error={errors.date?.message}
       />
       <Input
-        type="text"
+        type="number"
         register={register('price')}
         placeholder="비용"
+        error={errors.price?.message}
       />
       <Input
         type="text"
         register={register('location')}
         placeholder="위치"
+        error={errors.location?.message}
       />
       <Input
         type="text"
@@ -69,7 +69,7 @@ const Form = styled.form`
   padding: 0 59px;
   text-align: center;
 
-  input {
+  & > div {
     margin-bottom: 12px;
   }
 `;

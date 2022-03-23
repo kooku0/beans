@@ -4134,6 +4134,7 @@ __metadata:
     react-use-measure: ^2.1.1
     recoil: ^0.6.1
     start-server-and-test: ^1.14.0
+    timezone-mock: ^1.3.1
     typescript: 4.4.3
     yup: ^0.32.11
   languageName: unknown
@@ -11451,6 +11452,13 @@ __metadata:
   dependencies:
     setimmediate: ^1.0.4
   checksum: ec37ae299066bef6c464dcac29c7adafba1999e7227a9bdc4e105a459bee0f0b27234a46bfd7ab4041da79619e06a58433472867a913d01c26f8a203f87cee70
+  languageName: node
+  linkType: hard
+
+"timezone-mock@npm:^1.3.1":
+  version: 1.3.1
+  resolution: "timezone-mock@npm:1.3.1"
+  checksum: 169783bdbfdbc8e00876f41ec0bae625b73c448febe5eaa45aa7610a4a256098553508232387cc06397f089edb5cbad70cbe7d8cc48629dce81e7a1058eda41f
   languageName: node
   linkType: hard
 
