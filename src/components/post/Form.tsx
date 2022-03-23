@@ -1,33 +1,63 @@
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
 import styled from '@emotion/styled';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useRecoilValue } from 'recoil';
 import * as yup from 'yup';
 
 import Button from '@/components/common/Button';
 import Input from '@/components/common/Input';
 import useCreateJournal from '@/hooks/api/useCreateJournal';
 import { Journal } from '@/models/journal';
+import latLngState from '@/recoil/post/latLan/atom';
+import { searchDetailAddrFromCoords } from '@/services/map';
 
 const validationSchema = yup.object({
   date: yup.date().max(new Date(), '오늘 날짜 이전이어야 합니다.').required('날짜를 입력해주세요.'),
   price: yup.number().required('사용한 비용을 입력해주세요.'),
-  location: yup.string().trim().required('위치를 입력해주세요.'),
+  location: yup.string().required('위치를 클릭해주세요.'),
   contents: yup.string().trim().required('내용을 입력해주세요.'),
 }).required();
 
-function FormContainer() {
+interface FormData extends Omit<Journal, 'location'> {
+  location: string;
+}
+
+function Form() {
+  const latLng = useRecoilValue(latLngState);
   const { mutate } = useCreateJournal();
 
-  const { register, handleSubmit, formState: { errors, isValid } } = useForm<Journal>({
+  const {
+    register, handleSubmit, setValue, formState: { errors, isValid },
+  } = useForm<FormData>({
     mode: 'onChange',
     resolver: yupResolver(validationSchema),
   });
 
-  const onSubmit = handleSubmit((data) => mutate(data));
+  const onSubmit = handleSubmit((data) => {
+    if (latLng) {
+      mutate({
+        ...data,
+        location: latLng,
+      });
+    }
+  });
+
+  async function setAddress() {
+    if (latLng) {
+      const address = await searchDetailAddrFromCoords(latLng);
+
+      setValue('location', address, { shouldValidate: true });
+    }
+  }
+
+  useEffect(() => {
+    setAddress();
+  }, [latLng]);
 
   return (
-    <Form onSubmit={onSubmit}>
+    <FormContainer onSubmit={onSubmit}>
       <Input
         type="date"
         register={register('date')}
@@ -43,7 +73,7 @@ function FormContainer() {
       <Input
         type="text"
         register={register('location')}
-        placeholder="위치"
+        placeholder="위치 (지도에서 클릭해주세요)"
         error={errors.location?.message}
       />
       <Input
@@ -52,13 +82,13 @@ function FormContainer() {
         placeholder="내용"
       />
       <Button type="submit" disabled={!isValid}>저장하기</Button>
-    </Form>
+    </FormContainer>
   );
 }
 
-export default FormContainer;
+export default Form;
 
-const Form = styled.form`
+const FormContainer = styled.form`
   position: relative;
   width: 496px;
   background: ${({ theme }) => theme.background};

@@ -1,13 +1,19 @@
 import { render } from '@testing-library/react';
 
+import InjectTestingRecoil from '@/test/InjectTestingRecoil';
 import ReactQueryWrapper from '@/test/ReactQueryWrapper';
 
 import PostPage from './post.page';
 
+jest.mock('@/services/map');
+jest.mock('@/hooks/useMap');
+
 describe('PostPage', () => {
   const renderPostPage = () => render((
     <ReactQueryWrapper>
-      <PostPage />
+      <InjectTestingRecoil>
+        <PostPage />
+      </InjectTestingRecoil>
     </ReactQueryWrapper>
   ));
 

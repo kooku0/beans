@@ -1,6 +1,7 @@
 import Head from 'next/head';
 
-import FormContainer from '@/containers/post/FormContainer';
+import Form from '@/components/post/Form';
+import Map from '@/components/post/Map';
 
 function PostPage() {
   return (
@@ -9,7 +10,8 @@ function PostPage() {
         <title>글 작성</title>
       </Head>
       <div>글쓰기</div>
-      <FormContainer />
+      <Map />
+      <Form />
     </>
   );
 }
