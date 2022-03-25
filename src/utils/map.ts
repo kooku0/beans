@@ -2,7 +2,7 @@ import { LatLng } from '@/models/common';
 
 // eslint-disable-next-line import/prefer-default-export
 export function searchDetailAddrFromCoords({ latitude, longitude }: LatLng): Promise<string> {
-  const geocoder = new window.kakao.maps.services.Geocoder();
+  const geocoder = new kakao.maps.services.Geocoder();
 
   return new Promise(
     (resolve, reject) => geocoder.coord2Address(
