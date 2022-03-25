@@ -8,7 +8,7 @@ interface Params {
   ref: RefObject<HTMLDivElement>
   center: LatLng;
   zoomLevel: number;
-  onClick?: (event: kakao.maps.event.MouseEvent) => void;
+  onClick?: (latLng: LatLng) => void;
 }
 
 interface Map {
@@ -48,14 +48,23 @@ function useMap({
     }
   }, []);
 
+  function clickEventCallback(event: kakao.maps.event.MouseEvent) {
+    if (onClick && event.latLng) {
+      onClick({
+        latitude: event.latLng.getLat(),
+        longitude: event.latLng.getLng(),
+      });
+    }
+  }
+
   useEffect(() => {
     if (map && onClick) {
-      kakao.maps.event.addListener(map, 'click', onClick);
+      kakao.maps.event.addListener(map, 'click', clickEventCallback);
     }
 
     return () => {
       if (map && onClick) {
-        kakao.maps.event.removeListener(map, 'click', onClick);
+        kakao.maps.event.removeListener(map, 'click', clickEventCallback);
       }
     };
   }, [map, onClick]);

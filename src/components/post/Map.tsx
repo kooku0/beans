@@ -24,16 +24,9 @@ function Map() {
     onClick: handleClickMap,
   });
 
-  function handleClickMap(event: kakao.maps.event.MouseEvent) {
-    if (event.latLng) {
-      const latLng = {
-        latitude: event.latLng.getLat(),
-        longitude: event.latLng.getLng(),
-      };
-
-      setMarker(latLng);
-      setLatLan(latLng);
-    }
+  function handleClickMap(latLng: LatLng) {
+    setMarker(latLng);
+    setLatLan(latLng);
   }
 
   return (
