@@ -37,10 +37,10 @@ function useMap({
 
     if (mapElement) {
       const mapOption = {
-        center: new kakao.maps.LatLng(center.latitude, center.longitude),
+        center: new window.kakao.maps.LatLng(center.latitude, center.longitude),
         level: zoomLevel,
       };
-      const kakaoMap = new kakao.maps.Map(mapElement, mapOption);
+      const kakaoMap = new window.kakao.maps.Map(mapElement, mapOption);
       setState({
         ...state,
         map: kakaoMap,
@@ -83,7 +83,7 @@ function useMap({
   const setMarker = (position: LatLng) => {
     const { latitude, longitude } = position;
 
-    const markerPosition = new kakao.maps.LatLng(latitude, longitude);
+    const markerPosition = new window.kakao.maps.LatLng(latitude, longitude);
 
     if (marker) {
       marker.setPosition(markerPosition);
@@ -91,7 +91,7 @@ function useMap({
       return;
     }
 
-    const newMarker = new kakao.maps.Marker({
+    const newMarker = new window.kakao.maps.Marker({
       position: markerPosition,
     });
 
