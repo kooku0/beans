@@ -1,6 +1,6 @@
 import Head from 'next/head';
 
-import Form from '@/components/post/Form';
+import JournalForm from '@/components/post/JournalForm';
 import Map from '@/components/post/Map';
 
 function PostPage() {
@@ -11,7 +11,7 @@ function PostPage() {
       </Head>
       <div>글쓰기</div>
       <Map />
-      <Form />
+      <JournalForm />
     </>
   );
 }

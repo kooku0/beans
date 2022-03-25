@@ -18,7 +18,7 @@ export function searchDetailAddrFromCoords({ latitude, longitude }: LatLng): Pro
           resolve(address.address_name);
         }
 
-        reject(result);
+        reject(new Error('잘못된 좌표입니다.'));
       },
     ),
   );

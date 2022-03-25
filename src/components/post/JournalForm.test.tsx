@@ -7,12 +7,12 @@ import useCreateJournal from '@/hooks/api/useCreateJournal';
 import InjectTestingRecoil from '@/test/InjectTestingRecoil';
 import ReactQueryWrapper from '@/test/ReactQueryWrapper';
 
-import Form from './Form';
+import JournalForm from './JournalForm';
 
 jest.mock('@/hooks/api/useCreateJournal');
-jest.mock('@/services/map');
+jest.mock('@/utils/map');
 
-describe('Form', () => {
+describe('JournalForm', () => {
   const handleCreateJournal = jest.fn();
   const latLng = {
     latitude: 123,
@@ -34,7 +34,7 @@ describe('Form', () => {
       <InjectTestingRecoil
         latLng={given.latLng}
       >
-        <Form />
+        <JournalForm />
       </InjectTestingRecoil>
     </ReactQueryWrapper>
   ));
@@ -43,7 +43,7 @@ describe('Form', () => {
     given('latLng', () => latLng);
 
     context('저장하기 버튼을 누르면', () => {
-      it('입력한 값들이 콘솔에 찍혀야 한다.', async () => {
+      it('입력한 값들이 저장되어야 한다.', async () => {
         renderForm();
 
         await act(async () => {

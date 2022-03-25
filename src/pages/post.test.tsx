@@ -5,7 +5,7 @@ import ReactQueryWrapper from '@/test/ReactQueryWrapper';
 
 import PostPage from './post.page';
 
-jest.mock('@/services/map');
+jest.mock('@/utils/map');
 jest.mock('@/hooks/useMap');
 
 describe('PostPage', () => {

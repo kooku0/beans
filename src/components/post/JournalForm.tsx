@@ -9,9 +9,10 @@ import * as yup from 'yup';
 import Button from '@/components/common/Button';
 import Input from '@/components/common/Input';
 import useCreateJournal from '@/hooks/api/useCreateJournal';
+import { LatLng } from '@/models/common';
 import { Journal } from '@/models/journal';
 import latLngState from '@/recoil/post/latLan/atom';
-import { searchDetailAddrFromCoords } from '@/services/map';
+import { searchDetailAddrFromCoords } from '@/utils/map';
 
 const validationSchema = yup.object({
   date: yup.date().max(new Date(), '오늘 날짜 이전이어야 합니다.').required('날짜를 입력해주세요.'),
@@ -24,7 +25,7 @@ interface FormData extends Omit<Journal, 'location'> {
   location: string;
 }
 
-function Form() {
+function JournalForm() {
   const latLng = useRecoilValue(latLngState);
   const { mutate } = useCreateJournal();
 
@@ -36,12 +37,10 @@ function Form() {
   });
 
   const onSubmit = handleSubmit((data) => {
-    if (latLng) {
-      mutate({
-        ...data,
-        location: latLng,
-      });
-    }
+    mutate({
+      ...data,
+      location: latLng as LatLng,
+    });
   });
 
   async function setAddress() {
@@ -57,7 +56,7 @@ function Form() {
   }, [latLng]);
 
   return (
-    <FormContainer onSubmit={onSubmit}>
+    <Form onSubmit={onSubmit}>
       <Input
         type="date"
         register={register('date')}
@@ -82,13 +81,13 @@ function Form() {
         placeholder="내용"
       />
       <Button type="submit" disabled={!isValid}>저장하기</Button>
-    </FormContainer>
+    </Form>
   );
 }
 
-export default Form;
+export default JournalForm;
 
-const FormContainer = styled.form`
+const Form = styled.form`
   position: relative;
   width: 496px;
   background: ${({ theme }) => theme.background};
