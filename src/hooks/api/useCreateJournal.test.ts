@@ -2,7 +2,7 @@ import { act, renderHook } from '@testing-library/react-hooks';
 
 import { createJournal } from '@/api/journal';
 import { docRef as FIXTURE_DOC_REF } from '@/fixtures/firebase';
-import FIXTURE_JOURNAL from '@/fixtures/journal';
+import { journalForm as FIXTURE_JOURNAL_FORM } from '@/fixtures/journal';
 import wrapper from '@/test/ReactQueryWrapper';
 
 import useCreateJournal from './useCreateJournal';
@@ -24,7 +24,7 @@ describe('useCreateJournal', () => {
     const { result } = useCreateJournalHook();
 
     await act(async () => {
-      await result.current.mutate(FIXTURE_JOURNAL);
+      await result.current.mutate(FIXTURE_JOURNAL_FORM);
     });
 
     expect(createJournal).toBeCalled();

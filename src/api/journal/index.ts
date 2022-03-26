@@ -1,20 +1,30 @@
 import {
-  addDoc, collection,
+  addDoc, collection, getDocs,
+  orderBy, query,
 } from 'firebase/firestore';
 
 import { db } from '@/services/firebase';
+import { parseDocsData } from '@/utils/firebase';
 
-import { CreateJournalRequest, CreateJournalResponse } from './model';
+import { CreateJournalRequest, CreateJournalResponse, JournalResponse } from './model';
 
 const COLECTION_NAME = 'journal';
 const journalCol = collection(db, COLECTION_NAME);
 
-// eslint-disable-next-line import/prefer-default-export
 export async function createJournal(journal: CreateJournalRequest): Promise<CreateJournalResponse> {
   const docRef = await addDoc(journalCol, {
     ...journal,
-    createdAt: new Date(),
+    date: journal.date.toISOString(),
+    createdAt: new Date().toISOString(),
   });
 
   return docRef;
+}
+
+export async function fetchJournals(): Promise<JournalResponse> {
+  const q = query(journalCol, orderBy('date', 'desc'));
+  const querySnapshot = await getDocs(q);
+  const journals = querySnapshot.docs.map(parseDocsData);
+
+  return journals as JournalResponse;
 }

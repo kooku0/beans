@@ -1,6 +1,8 @@
 import styled from '@emotion/styled';
 import Link from 'next/link';
 
+import JournalTable from '@/components/home/JournalTable';
+
 function HomePage() {
   return (
     <Main>
@@ -14,6 +16,9 @@ function HomePage() {
         <Link href="/post">
           <a>post</a>
         </Link>
+      </div>
+      <div>
+        <JournalTable />
       </div>
     </Main>
   );
