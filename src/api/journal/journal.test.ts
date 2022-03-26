@@ -1,8 +1,8 @@
-import { addDoc, getDocs } from 'firebase/firestore';
+import { addDoc, getDoc, getDocs } from 'firebase/firestore';
 
 import { journal as FIXTURE_JOURNAL, journalForm as FIXTURE_JOURNAL_FORM } from '@/fixtures/journal';
 
-import { createJournal, fetchJournals } from '.';
+import { createJournal, fetchJournal, fetchJournals } from '.';
 
 jest.mock('firebase/firestore');
 
@@ -32,20 +32,36 @@ describe('journal', () => {
     beforeEach(() => {
       jest.clearAllMocks();
 
-      (getDocs as jest.Mock).mockImplementation(() => ({
+      (getDocs as jest.Mock).mockResolvedValue({
         docs: [
           {
             id: FIXTURE_JOURNAL.id,
             data: () => FIXTURE_JOURNAL,
           },
         ],
-      }));
+      });
     });
 
     it('journal들을 가져와야 한다.', async () => {
       const response = await fetchJournals();
 
       expect(response).toEqual([FIXTURE_JOURNAL]);
+    });
+  });
+
+  describe('fetchJournal', () => {
+    beforeEach(() => {
+      jest.clearAllMocks();
+
+      (getDoc as jest.Mock).mockResolvedValue({
+        data: () => FIXTURE_JOURNAL,
+      });
+    });
+
+    it('journal을 가져와야 한다.', async () => {
+      const response = await fetchJournal('journal-id');
+
+      expect(response).toEqual(FIXTURE_JOURNAL);
     });
   });
 });

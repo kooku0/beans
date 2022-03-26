@@ -7,7 +7,7 @@ function PostPage() {
   return (
     <>
       <Head>
-        <title>글 작성</title>
+        <title>Journal 작성</title>
       </Head>
       <div>글쓰기</div>
       <Map />
