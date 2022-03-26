@@ -3,7 +3,7 @@ import { useQuery } from 'react-query';
 import { fetchJournal } from '@/api/journal';
 
 function useFetchJournal(id: string) {
-  const query = useQuery('journals', () => fetchJournal(id), {
+  const query = useQuery(['journal', id], () => fetchJournal(id), {
     enabled: !!id,
   });
 

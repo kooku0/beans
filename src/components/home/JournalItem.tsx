@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import dayjs from 'dayjs';
+import Link from 'next/link';
 
 import Button from '@/components/common/Button';
 import { Journal } from '@/models/journal';
@@ -10,7 +11,9 @@ interface Props {
 }
 
 function JournalItem({ journal }: Props) {
-  const { date, contents, price } = journal;
+  const {
+    date, contents, price, id,
+  } = journal;
 
   const parseTime = (time: string) => dayjs(time).format('YYYY년 MM월 DD일');
 
@@ -24,12 +27,14 @@ function JournalItem({ journal }: Props) {
         {contents}
       </td>
       <td>
-        <Button
-          color="lightGrey"
-          size="xSmall"
-        >
-          자세히 보기
-        </Button>
+        <Link href={`/journal/${id}`}>
+          <Button
+            color="lightGrey"
+            size="xSmall"
+          >
+            자세히 보기
+          </Button>
+        </Link>
       </td>
     </TableItem>
   );
