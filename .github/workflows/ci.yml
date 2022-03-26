@@ -29,5 +29,6 @@ jobs:
           install: false
           command: yarn test:e2e
         env:
+          NEXT_PUBLIC_KAKAO_APP_KEY: ${{ secrets.NEXT_PUBLIC_KAKAO_APP_KEY }}
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
