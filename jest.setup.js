@@ -1,5 +1,8 @@
 import { setLogger } from 'react-query';
 
+import dayjs from 'dayjs';
+import timezone from 'dayjs/plugin/timezone';
+import utc from 'dayjs/plugin/utc';
 import timezoneMock from 'timezone-mock';
 
 import '@testing-library/jest-dom/extend-expect';
@@ -14,3 +17,8 @@ setLogger({
 });
 
 timezoneMock.register('UTC');
+
+dayjs.extend(utc);
+dayjs.extend(timezone);
+
+dayjs.tz.setDefault('Asia/Seoul');

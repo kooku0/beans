@@ -1,6 +1,8 @@
 import { DocumentData } from '@firebase/firestore';
 
-import { Journal } from '@/models/journal';
+import { Journal, JournalForm } from '@/models/journal';
 
-export type CreateJournalRequest = Journal;
+export type CreateJournalRequest = JournalForm;
 export type CreateJournalResponse = DocumentData;
+
+export type JournalResponse = Journal[];

@@ -10,7 +10,7 @@ import Button from '@/components/common/Button';
 import Input from '@/components/common/Input';
 import useCreateJournal from '@/hooks/api/useCreateJournal';
 import { LatLng } from '@/models/common';
-import { Journal } from '@/models/journal';
+import { JournalForm as JournalFormData } from '@/models/journal';
 import latLngState from '@/recoil/post/latLan/atom';
 import { searchDetailAddrFromCoords } from '@/utils/map';
 
@@ -21,7 +21,7 @@ const validationSchema = yup.object({
   contents: yup.string().trim().required('내용을 입력해주세요.'),
 }).required();
 
-interface FormData extends Omit<Journal, 'location'> {
+interface FormData extends Omit<JournalFormData, 'location'> {
   location: string;
 }
 
