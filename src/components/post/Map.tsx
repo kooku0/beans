@@ -10,8 +10,8 @@ import latLanState from '@/recoil/post/latLan/atom';
 function Map() {
   const setLatLan = useSetRecoilState(latLanState);
   const center: LatLng = {
-    latitude: 33.450701,
-    longitude: 126.570667,
+    latitude: 37.579887,
+    longitude: 126.976870,
   };
 
   const mapRef = useRef<HTMLDivElement>(null);
@@ -20,7 +20,7 @@ function Map() {
   } = useMap({
     ref: mapRef,
     center,
-    zoomLevel: 3,
+    zoomLevel: 5,
     onClick: handleClickMap,
   });
 
@@ -47,7 +47,7 @@ function Map() {
 export default Map;
 
 const MapWrapper = styled.div`
-  width: 320px;
+  width: 500px;
   height: 360px;
   border-radius: 8px;
   position: relative;

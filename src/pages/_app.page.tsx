@@ -11,6 +11,7 @@ import type { AppProps } from 'next/app';
 import { SessionProvider } from 'next-auth/react';
 import { RecoilRoot } from 'recoil';
 
+import Navbar from '@/components/common/Navbar';
 import GlobalStyles from '@/styles/GlobalStyles';
 import lightTheme from '@/styles/theme';
 
@@ -29,6 +30,7 @@ function MyApp({ Component, pageProps }: AppProps): ReactElement {
         <RecoilRoot>
           <ThemeProvider theme={lightTheme}>
             <GlobalStyles />
+            <Navbar />
             <Component {...pageProps} />
           </ThemeProvider>
         </RecoilRoot>

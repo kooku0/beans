@@ -11,9 +11,9 @@ describe('HomePage', () => {
     </ReactQueryWrapper>
   ));
 
-  it('"home" 문구가 보여야 한다.', () => {
+  it('"글 목록"이 보여야 한다.', () => {
     const { container } = renderHomePage();
 
-    expect(container).toHaveTextContent('home');
+    expect(container).toHaveTextContent('글 목록');
   });
 });
