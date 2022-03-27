@@ -22,6 +22,9 @@
 - Next.js
 - Recoil
 - React-Query
+- Emotion.js
+- Jest
+- Cypress
 
 ## 📌 개발 가이드
 
