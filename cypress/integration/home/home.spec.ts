@@ -4,7 +4,7 @@ describe('The Home Page', () => {
   it('successfully loads', () => {
     cy.visit('/');
 
-    cy.contains('home');
+    cy.contains('글 목록');
   });
 
   context('journal item을 클릭하면', () => {
