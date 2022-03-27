@@ -1,25 +1,11 @@
 import styled from '@emotion/styled';
-import Link from 'next/link';
 
-import JournalTable from '@/components/home/JournalTable';
+import JournalsSection from '@/components/home/JournalsSection';
 
 function HomePage() {
   return (
     <Main>
-      <div>home</div>
-      <div>
-        <Link href="/auth">
-          <a>auth</a>
-        </Link>
-      </div>
-      <div>
-        <Link href="/post">
-          <a>post</a>
-        </Link>
-      </div>
-      <div>
-        <JournalTable />
-      </div>
+      <JournalsSection />
     </Main>
   );
 }

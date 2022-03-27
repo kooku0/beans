@@ -1,6 +1,8 @@
 import { signIn, signOut, useSession } from 'next-auth/react';
 
-function AuthPage() {
+import Button from '@/components/common/Button';
+
+function SignInPage() {
   const { data: session } = useSession();
 
   if (session) {
@@ -8,7 +10,12 @@ function AuthPage() {
       <>
         Signed in
         <br />
-        <button type="button" onClick={() => signOut()}>Sign out</button>
+        <Button
+          type="button"
+          onClick={() => signOut()}
+        >
+          Sign out
+        </Button>
       </>
     );
   }
@@ -16,14 +23,13 @@ function AuthPage() {
     <>
       Not signed in
       <br />
-      <button
-        type="button"
+      <Button
         onClick={() => signIn()}
       >
         Sign in
-      </button>
+      </Button>
     </>
   );
 }
 
-export default AuthPage;
+export default SignInPage;

@@ -17,9 +17,9 @@ describe('PostPage', () => {
     </ReactQueryWrapper>
   ));
 
-  it('"글쓰기" 문구가 보여야 한다.', () => {
+  it('"글 작성" 문구가 보여야 한다.', () => {
     const { container } = renderPostPage();
 
-    expect(container).toHaveTextContent('글쓰기');
+    expect(container).toHaveTextContent('글 작성');
   });
 });

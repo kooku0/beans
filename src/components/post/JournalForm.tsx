@@ -71,6 +71,7 @@ function JournalForm() {
       />
       <Input
         type="text"
+        disabled
         register={register('location')}
         placeholder="위치 (지도에서 클릭해주세요)"
         error={errors.location?.message}
@@ -80,7 +81,13 @@ function JournalForm() {
         register={register('contents')}
         placeholder="내용"
       />
-      <Button type="submit" disabled={!isValid}>저장하기</Button>
+      <Button
+        type="submit"
+        disabled={!isValid}
+        size="xLarge"
+      >
+        저장하기
+      </Button>
     </Form>
   );
 }
@@ -94,8 +101,8 @@ const Form = styled.form`
   border: 1px solid ${({ theme }) => theme.primary30};
   box-sizing: border-box;
   border-radius: 8px;
-  margin: 80px 0 100px 0;
-  padding: 0 59px;
+  margin: 40px 0 100px 0;
+  padding: 14px 59px;
   text-align: center;
 
   & > div {

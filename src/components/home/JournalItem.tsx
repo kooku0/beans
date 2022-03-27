@@ -27,13 +27,15 @@ function JournalItem({ journal }: Props) {
         {contents}
       </td>
       <td>
-        <Link href={`/journal/${id}`}>
-          <Button
-            color="lightGrey"
-            size="xSmall"
-          >
-            자세히 보기
-          </Button>
+        <Link href={`/journal/${id}`} passHref>
+          <a>
+            <Button
+              color="lightGrey"
+              size="xSmall"
+            >
+              자세히 보기
+            </Button>
+          </a>
         </Link>
       </td>
     </TableItem>
